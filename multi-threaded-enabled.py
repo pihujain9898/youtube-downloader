@@ -4,7 +4,7 @@ import timeit
 
 
 #for multi-threading of playlist downloding
-pool_size = 10
+pool_size = int(input("Enter no. of processes at a time(range(1,5)): "))
 def worker(video):
     print("Downloading", video.title)
     video.streams.get_by_itag(22).download()
@@ -45,6 +45,12 @@ def main_func(url):
     except Exception as e: 
         print(e, "\n\n")
         main_func(url)
-
-url = input("Enter URL: ")
-main_func(url)
+choice=True
+while choice:
+    choice = input("Press 0 to exit or anykey to continue: ")
+    if choice=="0":
+        choice=False
+        break
+    else:
+        url = input("Enter URL: ")
+        main_func(url)
